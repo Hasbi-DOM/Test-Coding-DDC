@@ -1,5 +1,6 @@
 import { IoSearchOutline } from "react-icons/io5"
 import { IoIosArrowForward } from "react-icons/io";
+import logo from "./assets/logo.webp";
 import Image from "next/image";
 
 export default function Home() {
@@ -35,11 +36,7 @@ export default function Home() {
     <div className="w-full">
       <div className="px-3 py-3 space-y-2">
         <div className="w-full flex items-center justify-between">
-          <Image
-            src="https://www.dusdusan.com/assets/images/688f31577c477a3d4c0ca60073777b36.png"
-            alt="Dusdusan.com"
-            className="h-8"
-          />
+          <Image src={logo} alt="Dusdusan.com" className="h-8" />
           <div className=" space-x-1">
             <button className="border border-[#ffad00] hover:bg-[#ffad00] px-3 py-1 hover:transition-all hover:ease-cubic-bezier(0.645, 0.045, 0.355, 1) hover:durarion-300 text-[#ffad00] hover:text-white rounded">
               <p className="font-medium text-sm">Masuk</p>
