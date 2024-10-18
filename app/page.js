@@ -24,19 +24,19 @@ export default function Home() {
       src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg",
     },
     {
-      image: "2",
-      src: "https://images.dusdusan.com/product/rtMAroxY1727733864_1727733733048.jpg",
+      image: "1",
+      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg",
     },
     {
-      image: "3",
-      src: "https://images.dusdusan.com/product/y0ev2EuG1727704741_1727704528546.jpg",
+      image: "1",
+      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg",
     },
   ];
   return (
     <div className="w-full">
       <div className="px-3 py-3 space-y-2">
         <div className="w-full flex items-center justify-between">
-          <Image src={logo} alt="Dusdusan.com" className="h-8" />
+          <Image height={32} src={logo} alt="Dusdusan.com" />
           <div className=" space-x-1">
             <button className="border border-[#ffad00] hover:bg-[#ffad00] px-3 py-1 hover:transition-all hover:ease-cubic-bezier(0.645, 0.045, 0.355, 1) hover:durarion-300 text-[#ffad00] hover:text-white rounded">
               <p className="font-medium text-sm">Masuk</p>
@@ -66,9 +66,17 @@ export default function Home() {
           ))}
         </ul>
       </div>
-      <div>
+      <div className="w-full">
         {image.map((data, index) => (
-          <Image key={index} src={data.src} alt={data.image} />
+          <Image
+            key={index}
+            src={data.src}
+            alt={data.image}
+            objectFit="true"
+            width={1000}
+            height={500}
+            className="w-full"
+          />
         ))}
       </div>
       {/* <ul className="w-full flex items-center justify-center gap-1 absolute bottom-1 text-center">
@@ -89,9 +97,17 @@ export default function Home() {
         <div className="relative">
           <div className="w-full inline-flex items-center">
             {promoImage.map((img, index) => (
-              <div key={index} className="py-2.5 px-1">
+              <div key={index} className="w-full py-2.5 px-1">
                 <a href="">
-                  <Image src={img.src} alt={img.image} />
+                  <Image
+                    src={img.src}
+                    alt={img.image}
+                    key={index}
+                    objectFit="true"
+                    width={500}
+                    height={200}
+                    className="w-full"
+                  />
                 </a>
               </div>
             ))}
