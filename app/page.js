@@ -1,114 +1,312 @@
-import { IoSearchOutline } from "react-icons/io5"
+"use client";
 import { IoIosArrowForward } from "react-icons/io";
-import logo from "./assets/logo.webp";
+import otherIcon from "./assets/other.svg";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import recommendedIcon from "./assets/recommend_icon.svg";
+import Header from "./components/header";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [dataCategoryProduct, setDataCategoryProduk] = useState([]);
   const menu = [
     "Promo",
     "Kategori",
     "Terpilih",
     "Terlaris",
     "Terpopuler",
-    "Terbaru",
+    "Terbaru"
   ];
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + "</span>";
+    }
+  };
   const image = [
     {
       image: "1",
-      src: "https://images.dusdusan.com/product/mZD1k6gI1727163911_1727163779724.jpg",
+      src: "https://images.dusdusan.com/product/mZD1k6gI1727163911_1727163779724.jpg"
     },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/mZD1k6gI1727163911_1727163779724.jpg"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/mZD1k6gI1727163911_1727163779724.jpg"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/mZD1k6gI1727163911_1727163779724.jpg"
+    }
   ];
   const promoImage = [
     {
       image: "1",
-      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg",
+      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg"
     },
     {
       image: "1",
-      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg",
+      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg"
     },
     {
       image: "1",
-      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg",
-    },
+      src: "https://images.dusdusan.com/product/WZT3FNLW1727705239_1727705108574.jpg"
+    }
   ];
+  const kategoriProdukImg = [
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Persiapan Jualan"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Ibu dan Bayi"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Muslim"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Rumah Tangga"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Elektronik"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Textile"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Kesehatan dan Kecantikan"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Hobi dan Olahraga"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Stationary"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Dapur"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/article/iuEdmtDw1609373123_ICON%20WEB-11.png",
+      title: "Makanan dan Minuman"
+    }
+  ];
+
+  const listPromo = [
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg",
+      description:
+        "Makin Sehat Berolahraga Beli Alatnya di Dusdusan Banyak Bonusan!!",
+      date: "10 Jun 2024"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg",
+      description:
+        "Makin Sehat Berolahraga Beli Alatnya di Dusdusan Banyak Bonusan!!",
+      date: "10 Jun 2024"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg",
+      description:
+        "Makin Sehat Berolahraga Beli Alatnya di Dusdusan Banyak Bonusan!!",
+      date: "10 Jun 2024"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg",
+      description:
+        "Makin Sehat Berolahraga Beli Alatnya di Dusdusan Banyak Bonusan!!",
+      date: "10 Jun 2024"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg",
+      description:
+        "Makin Sehat Berolahraga Beli Alatnya di Dusdusan Banyak Bonusan!!",
+      date: "10 Jun 2024"
+    },
+    {
+      image: "1",
+      src: "https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg",
+      description:
+        "Makin Sehat Berolahraga Beli Alatnya di Dusdusan Banyak Bonusan!!",
+      date: "10 Jun 2024"
+    }
+  ];
+
+  useEffect(() => {
+    const fetchKategoriProduk = async () => {
+      const kategoriProduk = await fetch(
+        "https://apigateway.dusdusan.com/trendingProductCategory?limit=11&type=homepage"
+      );
+      const res = await kategoriProduk.json();
+      setDataCategoryProduk(res.data);
+    };
+    fetchKategoriProduk();
+  }, []);
   return (
-    <div className="w-full">
-      <div className="px-3 py-3 space-y-2">
-        <div className="w-full flex items-center justify-between">
-          <Image height={32} src={logo} alt="Dusdusan.com" />
-          <div className=" space-x-1">
-            <button className="border border-[#ffad00] hover:bg-[#ffad00] px-3 py-1 hover:transition-all hover:ease-cubic-bezier(0.645, 0.045, 0.355, 1) hover:durarion-300 text-[#ffad00] hover:text-white rounded">
-              <p className="font-medium text-sm">Masuk</p>
-            </button>
-            <button className="border border-[#ffad00] bg-[#ffad00] hover:bg-white px-3 py-1 hover:transition-all hover:ease-cubic-bezier(0.645, 0.045, 0.355, 1) hover:durarion-300 text-white hover:text-[#ffad00] rounded">
-              <p className="font-medium text-sm">Daftar</p>
+    <div className="w-full relative">
+      <Header />
+      <div className="pt-[95px]">
+        <div className="bg-[#00b0b9]">
+          <ul className="flex items-center justify-between px-3">
+            {menu.map((info, index) => (
+              <li key={index} className="p-2.5">
+                <a href="" className="text-vsm text-white font-bold uppercase">
+                  {info}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="w-full">
+          <Swiper
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false
+            }}
+            pagination={pagination}
+            modules={[Autoplay, Pagination]}
+            className="mySwiper"
+          >
+            {image.map((data, index) => (
+              <SwiperSlide>
+                <Image
+                  key={index}
+                  src={data.src}
+                  alt={data.image}
+                  objectFit="true"
+                  width={1000}
+                  height={500}
+                  className="w-full"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="space-y-[15px] pt-[15px]">
+          <div className="w-full">
+            <div className="flex items-center justify-between px-3">
+              <p className="text-[#282828] text-[15px] font-bold">Promo</p>
+              <button className="bg-[#ffad00] px-3 py-1 text-white rounded flex items-center">
+                <p className="font-medium text-vsm">Lihat Semua</p>
+                <IoIosArrowForward className="text-vsm" />
+              </button>
+            </div>
+            <div className="w-full inline-flex items-center">
+              {promoImage.map((img, index) => (
+                <div key={index} className="w-full py-2.5 px-1">
+                  <a href="">
+                    <Image
+                      src={img.src}
+                      alt={img.image}
+                      key={index}
+                      objectFit="true"
+                      width={500}
+                      height={200}
+                      className="w-full"
+                    />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-gradient-to-tr from-orange-400 via-orange-400 to-white px-5 space-y-[15px]">
+            <p className="text-white font-bold text-[15px] pt-[15px]">
+              Kategori Produk
+            </p>
+            <div className="w-full flex flex-wrap gap-4">
+              {dataCategoryProduct.map((data, index) => (
+                <div
+                  key={index}
+                  className="w-[60px] overflow-hidden whitespace-nowrap flex flex-col items-center"
+                >
+                  <div
+                    className="bg-white object-cover object-center rounded-md"
+                    style={{
+                      width: "60px",
+                      height: "65px",
+                      backgroundImage: `url(${data.image})`,
+                      backgroundPositionX: "50%",
+                      backgroundPositionY: "50%",
+                      backgroundSize: "70%",
+                      backgroundAttachment: "initial",
+                      backgroundOrigin: "initial",
+                      backgroundRepeat: "no-repeat",
+                      backgroundClip: "initial",
+                      backgroundColor: "rgb(255, 255, 255)"
+                    }}
+                  />
+                  <p className="text-white text-xs text-ellipsis max-w-[60px] overflow-hidden">
+                    {data.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="px-[15px] flex items-center justify-between">
+            <div className="flex h-[22px] space-x-3">
+              <Image src={recommendedIcon} className="w-[22px]" />
+              <p className="text-[15px] font-bold pt-0.5">
+                Menarik untuk disimak
+              </p>
+            </div>
+            <button className="bg-[#ffad00] px-3 py-1 text-white rounded flex items-center">
+              <p className="font-medium text-vsm">Lihat Semua</p>
+              <IoIosArrowForward className="text-vsm" />
             </button>
           </div>
-        </div>
-        <div className="w-full flex items-center space-x-2 border px-3 py-1 rounded">
-          <IoSearchOutline className="text-slate-200" />
-          <input
-            type="text"
-            placeholder="Cari barang kamu disini..."
-            className="w-full focus:outline-none text-sm"
-          />
-        </div>
-      </div>
-      <div className="bg-[#00b0b9]">
-        <ul className="flex items-center justify-between px-3">
-          {menu.map((info, index) => (
-            <li key={index} className="p-2.5">
-              <a href="" className="text-vsm text-white font-bold uppercase">
-                {info}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="w-full">
-        {image.map((data, index) => (
-          <Image
-            key={index}
-            src={data.src}
-            alt={data.image}
-            objectFit="true"
-            width={1000}
-            height={500}
-            className="w-full"
-          />
-        ))}
-      </div>
-      {/* <ul className="w-full flex items-center justify-center gap-1 absolute bottom-1 text-center">
-		<li href="" className="relative"><button className=" w-6 h-2.5 p-1 bg-gray-400 opacity-50 block hover:bg-white hover:opacity-100 focus:bg-[#00b0b9] focus:opacity-100 border-0 focus:outline-none focus:ring focus:ring-white rounded-full"></button></li>
-		<li href="" className="relative"><button className="w-6 h-3 bg-slate-200 opacity-50 hover:bg-white rounded-lg"></button></li>
-		<li href="" className="relative"><button className="w-6 h-3 bg-slate-200 opacity-50 hover:bg-white rounded-lg"></button></li>
-		<li href="" className="relative"><button className="w-6 h-3 bg-slate-200 opacity-50 hover:bg-white rounded-lg"></button></li>
-		<li href="" className="relative"><button className="w-6 h-3 bg-slate-200 opacity-50 hover:bg-white rounded-lg"></button></li>
-	</ul> */}
-      <div className="pt-5">
-        <div className="flex items-center justify-between px-3">
-          <p className="text-[#282828] text-[15px] font-bold">Promo</p>
-          <button className="bg-[#ffad00] px-3 py-1 text-white rounded flex items-center">
-            <p className="font-medium text-vsm">Lihat Semua</p>
-            <IoIosArrowForward className="text-vsm" />
-          </button>
-        </div>
-        <div className="relative">
-          <div className="w-full inline-flex items-center">
-            {promoImage.map((img, index) => (
-              <div key={index} className="w-full py-2.5 px-1">
-                <a href="">
-                  <Image
-                    src={img.src}
-                    alt={img.image}
-                    key={index}
-                    objectFit="true"
-                    width={500}
-                    height={200}
-                    className="w-full"
-                  />
-                </a>
+          <div>
+            {listPromo.map((data, index) => (
+              <div className="w-full border-b border-solid border-[#eee] py-[10px]">
+                <div className="flex px-[15px] gap-4">
+                  <div className="w-fit">
+                    <Image
+                      src="https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg"
+                      width={97}
+                      height={97}
+                      className="rounded-md h-[97px] w-[150px]"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <p className="text-xs ">Info Promo</p>
+                      <p className="font-medium text-base leading-5">
+                        {data.description}
+                      </p>
+                    </div>
+                    <p className="font-medium text-sm text-[#ffad00]">
+                      {data.date}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

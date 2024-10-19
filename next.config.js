@@ -7,6 +7,12 @@ module.exports = {
         port: "",
         pathname: "/product/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.dusdusan.com",
+        port: "",
+        pathname: "/article/**",
+      },
     ],
   },
 };
