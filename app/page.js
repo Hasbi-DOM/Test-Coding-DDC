@@ -22,7 +22,7 @@ export default function Home() {
   ];
   const pagination = {
     clickable: true,
-    renderBullet: function (index, className) {
+    renderBullet: function (className) {
       return '<span class="' + className + '">' + "</span>";
     }
   };
@@ -197,7 +197,7 @@ export default function Home() {
             className="mySwiper"
           >
             {image.map((data, index) => (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <Image
                   key={index}
                   src={data.src}
@@ -273,7 +273,7 @@ export default function Home() {
           </div>
           <div className="px-[15px] flex items-center justify-between">
             <div className="flex h-[22px] space-x-3">
-              <Image src={recommendedIcon} className="w-[22px]" />
+              <Image src={recommendedIcon} alt="like" className="w-[22px]" />
               <p className="text-[15px] font-bold pt-0.5">
                 Menarik untuk disimak
               </p>
@@ -285,11 +285,15 @@ export default function Home() {
           </div>
           <div>
             {listPromo.map((data, index) => (
-              <div className="w-full border-b border-solid border-[#eee] py-[10px]">
+              <div
+                key={index}
+                className="w-full border-b border-solid border-[#eee] py-[10px]"
+              >
                 <div className="flex px-[15px] gap-4">
                   <div className="w-fit">
                     <Image
                       src="https://images.dusdusan.com/product/W0s3Fmrp1717993047_promo_beli_bodimax_running_machine_gratis_bodimax_wellness_yoga_matt_b_3_juni_24_2_.jpg"
+                      alt="product"
                       width={97}
                       height={97}
                       className="rounded-md h-[97px] w-[150px]"
